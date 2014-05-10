@@ -62,6 +62,21 @@ function Ts($string, $pluralString, $amount)
 
 
 /**
+ * Translate a string in plural format
+ * 
+ * @param int $amount The amount
+ * @param string The string to pluralize and translate
+ *
+ * @package esoTalk
+ */
+function Td($amount, $string)
+{
+	$pluralForm = ET::$definitions["plural"];
+	return sprintf(ET::$definitions["%d $string"][$pluralForm($amount)], $amount);
+}
+
+
+/**
  * Shortcut function for ET::config().
  *
  * @see ET::config()
@@ -854,31 +869,31 @@ function relativeTime($then, $precise = false)
 	// If this happened over a year ago, return "x years ago".
 	if ($ago >= ($period = 60 * 60 * 24 * 365.25)) {
 		$years = floor($ago / $period);
-		return Ts("%d year ago", "%d years ago", $years);
+		return Td($years, "years ago");
 	}
 
 	// If this happened over two months ago, return "x months ago".
 	elseif ($ago >= ($period = 60 * 60 * 24 * (365.25 / 12)) * 2) {
 		$months = floor($ago / $period);
-		return Ts("%d month ago", "%d months ago", $months);
+		return Td($months, "months ago");
 	}
 
 	// If this happend over a week ago, return "x weeks ago".
 	elseif ($ago >= ($period = 60 * 60 * 24 * 7)) {
 		$weeks = floor($ago / $period);
-		return Ts("%d week ago", "%d weeks ago", $weeks);
+		return Td($weeks, "weeks ago");
 	}
 
 	// If this happened over a day ago, return "x days ago".
 	elseif ($ago >= ($period = 60 * 60 * 24)) {
 		$days = floor($ago / $period);
-		return Ts("%d day ago", "%d days ago", $days);
+		return Td($days, "days ago");
 	}
 
 	// If this happened over an hour ago, return "x hours ago".
 	elseif ($ago >= ($period = 60 * 60)) {
 		$hours = floor($ago / $period);
-		return Ts("%d hour ago", "%d hours ago", $hours);
+		return Td($hours, "hours ago");
 	}
 
 	// If we're going for a precise value, go on to test at the minute/second level.
@@ -887,11 +902,11 @@ function relativeTime($then, $precise = false)
 		// If this happened over a minute ago, return "x minutes ago".
 		if ($ago >= ($period = 60)) {
 			$minutes = floor($ago / $period);
-			return Ts("%d minute ago", "%d minutes ago", $minutes);
+			return Td($minutes, "minutes ago");
 		}
 
 		// Return "x seconds ago".
-		elseif ($ago >= 1) return Ts("%d second ago", "%d seconds ago", $ago);
+		elseif ($ago >= 1) return Td($ago, "seconds ago");
 
 	}
 

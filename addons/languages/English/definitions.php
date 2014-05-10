@@ -18,20 +18,26 @@ $definitions["charset"] = "utf-8";
 
 $definitions["date.full"] = "%c";
 
-$definitions["%d day ago"] = "yesterday";
-$definitions["%d days ago"] = "%d days ago";
-$definitions["%d hour ago"] = "1 hour ago";
-$definitions["%d hours ago"] = "%d hours ago";
-$definitions["%d minute ago"] = "1 minute ago";
-$definitions["%d minutes ago"] = "%d minutes ago";
-$definitions["%d month ago"] = "1 month ago";
-$definitions["%d months ago"] = "%d months ago";
-$definitions["%d second ago"] = "1 second ago";
-$definitions["%d seconds ago"] = "%d seconds ago";
-$definitions["%d week ago"] = "last week";
-$definitions["%d weeks ago"] = "%d weeks ago";
-$definitions["%d year ago"] = "last year";
-$definitions["%d years ago"] = "%d years ago";
+// Define plural form callback
+$definitions["plural"] = function($n) {
+	return $n == 1 ? 0 : 1;
+};
+
+// Define plural forms
+$definitions["%d conversations"] = array("%d conversation", "%d conversations");
+$definitions["%d days ago"] = array("yesterday", "%d days ago");
+$definitions["%d hours ago"] = array("%d hour ago", "%d hours ago");
+$definitions["%d members"] = array("%d member", "%d members");
+$definitions["%d minutes ago"] = array("%d minute ago", "%d minutes ago");
+$definitions["%d months ago"] = array("1 month ago", "%d months ago");
+$definitions["%d new"] = array("%d new", "%d new");
+$definitions["%d online"] = array("%d online", "%d online");
+$definitions["%d posts"] = array("%d post", "%d posts");
+$definitions["%d replies"] = array("%d reply", "%d replies");
+$definitions["%d seconds ago"] = array("1 second ago", "%d seconds ago");
+$definitions["%d views"] = array("%d view", "%d views");
+$definitions["%d weeks ago"] = array("last week", "%d weeks ago");
+$definitions["%d years ago"] = array("last year", "%d years ago");
 
 $definitions["%s and %s"] = "%s and %s";
 $definitions["%s can view this conversation."] = "%s can view this conversation.";
@@ -46,9 +52,6 @@ $definitions["%s mentioned you in %s."] = "%s mentioned you in %s.";
 $definitions["%s post"] = "%s post";
 $definitions["%s posted %s"] = "%s posted %s";
 $definitions["%s posted in %s."] = "%s posted in %s.";
-$definitions["%s posts"] = "%s posts";
-$definitions["%s reply"] = "%s reply";
-$definitions["%s replies"] = "%s replies";
 $definitions["%s Settings"] = "%s Settings";
 $definitions["%s started the conversation %s."] = "%s started the conversation %s.";
 $definitions["%s will be able to view this conversation."] = "%s will be able to view this conversation.";
@@ -350,14 +353,6 @@ $definitions["Start a private conversation with %s"] = "Start a private conversa
 $definitions["Start Conversation"] = "Start Conversation";
 $definitions["Starting a conversation"] = "Starting a conversation";
 $definitions["Statistics"] = "Statistics";
-$definitions["statistic.conversation.plural"] = "%s conversations";
-$definitions["statistic.conversation"] = "%s conversation";
-$definitions["statistic.member.plural"] = "%s members";
-$definitions["statistic.member"] = "%s member";
-$definitions["statistic.online.plural"] = "%s online";
-$definitions["statistic.online"] = "%s online";
-$definitions["statistic.post.plural"] = "%s posts";
-$definitions["statistic.post"] = "%s post";
 $definitions["Sticky"] = "Sticky";
 $definitions["Subscribe"] = "Subscribe";
 $definitions["Subscribed"] = "Subscribed";

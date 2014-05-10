@@ -42,7 +42,7 @@ else:
 
 <div class='info'>
 <a href='<?php echo URL("conversations/".$channel["slug"]); ?>' class='channel channel-<?php echo $channel["channelId"]; ?>'><?php echo $channel["title"]; ?></a>
-<span class='stats'><?php echo Ts("%s conversation", "%s conversations", $channel["countConversations"]); ?></span>
+<span class='stats'><?php echo Td($channel["countConversations"], "conversations"); ?></span>
 <?php if (!empty($channel["description"])): ?><p class='description'><?php echo $channel["description"]; ?></p><?php endif; ?>
 </div>
 </li>

@@ -37,7 +37,7 @@ endif;
 </div>
 
 <div class='col-replies'>
-<span class='subText'><?php echo Ts("%s post", "%s posts", $member["countPosts"]); ?></span>
+<span class='subText'><?php echo Td($member["countPosts"], "post"); ?></span>
 </div>
 
 </li>

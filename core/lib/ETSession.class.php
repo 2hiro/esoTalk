@@ -51,6 +51,7 @@ public function __construct()
 	// Start a session.
 	session_name(C("esoTalk.cookie.name")."_session");
 	session_start();
+
 	if (empty($_SESSION["token"])) $this->regenerateToken();
 
 	// Complicate session highjacking - check the current user agent against the one that initiated the session.

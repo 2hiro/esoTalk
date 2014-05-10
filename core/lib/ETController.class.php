@@ -298,7 +298,7 @@ public function init()
 				->bind(":seconds", C("esoTalk.userOnlineExpire"))
 				->exec()
 				->result();
-			$stat = Ts("statistic.online", "statistic.online.plural", number_format($online));
+			$stat = Td(number_format($online), "online");
 			$stat = "<a href='".URL("members/online")."' class='link-membersOnline'>$stat</a>";
 			$this->addToMenu("statistics", "statistic-online", $stat);
 		}

@@ -206,9 +206,9 @@ public function action_index($channelSlug = false)
 
 		// Get a bunch of statistics...
 		$queries = array(
-			"post" => ET::SQL()->select("COUNT(*)")->from("post")->get(),
-			"conversation" => ET::SQL()->select("COUNT(*)")->from("conversation")->get(),
-			"member" => ET::SQL()->select("COUNT(*)")->from("member")->get()
+			"posts" => ET::SQL()->select("COUNT(*)")->from("post")->get(),
+			"conversations" => ET::SQL()->select("COUNT(*)")->from("conversation")->get(),
+			"members" => ET::SQL()->select("COUNT(*)")->from("member")->get()
 		);
 		$sql = ET::SQL();
 		foreach ($queries as $k => $query) $sql->select("($query) AS $k");
@@ -216,7 +216,7 @@ public function action_index($channelSlug = false)
 
 		// ...and show them in the footer.
 		foreach ($stats as $k => $v) {
-			$stat = Ts("statistic.$k", "statistic.$k.plural", number_format($v));
+			$stat = Td(number_format($v), $k);
 			if ($k == "member" and (C("esoTalk.members.visibleToGuests") or ET::$session->user)) $stat = "<a href='".URL("members")."'>$stat</a>";
 			$this->addToMenu("statistics", "statistic-$k", $stat, array("before" => "statistic-online"));
 		}
