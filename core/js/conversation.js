@@ -576,18 +576,28 @@ collapseQuotes: function(items) {
 	$(".postBody blockquote:not(.collapsed)", items)
 		.addClass("collapsed")
 		.each(function() {
-			if ($(this)[0].scrollHeight <= $(this).innerHeight() + 20) {
-				$(this).removeClass("collapsed");
+			var $el = $(this);
+
+			if ($el[0].scrollHeight <= $el.innerHeight() + 20) {
+				$el.removeClass("collapsed");
 				return;
 			}
+
+			$el.append("<div class='expand-grdnt'></div>");
 
 			var link = $("<a href='#' class='expand'><i class='icon-ellipsis-horizontal'></i></a>");
 			link.click(function(e) {
 				e.preventDefault();
-				$(this).parents("blockquote").removeClass("collapsed");
-				$(this).remove();
+
+				var $el = $(this),
+					$bq = $el.closest("blockquote");
+
+				$bq.removeClass("collapsed");
+				$bq.find(".expand-grdnt").remove();
+				
+				$el.remove();
 			});
-			$(this).append(link);
+			$el.append(link);
 		});
 },
 
